@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+	font-family:;
+}
+
+a{
+    text-decoration: none;
+    color: #f1f1f1;
+}
+
+/* Variables */
+:root{
+	--bg-color:#000;
+	--cl-color:#fff;
+}
+
+body{
+
+}
+
+.login{
+	border: 1px solid red;
+}
