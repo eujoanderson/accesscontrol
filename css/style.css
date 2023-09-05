@@ -20,10 +20,18 @@ a{
 	--cl-color:#fff;
 }
 
-body{
-
-}
 
 .login{
 	border: 1px solid red;
 }
+
+a{
+    text-decoration: none !important;
+
+}
+
+a:hover{
+    color:yellowgreen  !important;
+    transition: all 0.5s;
+}   
+
