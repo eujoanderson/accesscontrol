@@ -13,49 +13,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Content of icons -->
-
+    <link rel="icon" href="caminho_para_o_seu_ícone.ico">
 
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Use a versão mais recente do Bootstrap se disponível -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
-    <!-- Icons -->
-    <link rel="icon" href="">
-
     <title>ControllAcess - Controle de Acesso</title>
 </head>
-<body class="">
-   
-    <div class="container w-25 bg-dark text-white p-5 ">
-        <h2>ControllAcess</h2>
-        <div class="row">
-            <main class="form-signin m-auto d-flex border justify-content-center pt-5">
-                <form>
-                  <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-                  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-              
-                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput" class="text-dark opacity-50">Email</label>
-                  </div>
-                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword" class="text-dark opacity-50">Senha</label>
-                  </div>
-              
-                  <div class="form-check text-start my-3">
-                    <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Remember me
-                    </label>
-                  </div>
-                  <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-                  <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
-                </form>
-              </main>
-        </div>
-    </div>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-info">
+  <div class="container bg-dark text-white p-5 rounded-4 text-center w-25">
+    <h2>ControllAcess</h2>
+    <div class="row">
+      <main class="form-signin m-auto pt-5">
+        <form class="">
+      
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput" class="text-dark opacity-50">Email</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword" class="text-dark opacity-50">Senha</label>
+          </div>
+      
+          <div class="form-check text-start my-3 text-center">
 
+            <a href="" class="text-white password">Esqueci minha senha</a>
+          </div>
+          <button class="btn btn-primary w-100 py-2" type="submit"> Entrar</button>
+        </form>
+      </main>
+    </div>
+  </div>
 </body>
 </html>
