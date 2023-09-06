@@ -1,12 +1,11 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
     text-decoration: none;
     border: none;
     outline: none;
     scroll-behavior: smooth;
-	font-family:;
 }
 
 a{
@@ -27,11 +26,36 @@ a{
 
 a{
     text-decoration: none !important;
+}
 
+input::placeholder{
+    color: #000000 !important;
+    opacity: 0.5 !important;
 }
 
 a:hover{
-    color:yellowgreen  !important;
+    color:rgb(255, 255, 255)  !important;
     transition: all 0.5s;
-}   
+}
+.icons{
+    position: absolute;
+    top: 18px;
+    left: 17px;
+    font-size: 1.3rem;
+    color: #000000 !important;
+} 
+.form-control{
+    padding: 0 0 0 3.2rem !important;
+}
+.form{
+    background-color: #202024;
+}
 
+.logo{
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.text-login{
+    font-size: 3.2rem;
+    font-family: 'Anton', sans-serif;
+}
