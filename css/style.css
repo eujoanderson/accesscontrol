@@ -23,9 +23,22 @@ a{
 .login{
 	border: 1px solid red;
 }
+.btn-login{
+    background-color: #7431f9 !important;
+    transition: all 0.5s;
+    border: none !important;
+}
 
+.btn-login:hover{
+    background-color: #4f299b !important;
+    border: none;
+}
 a{
     text-decoration: none !important;
+}
+
+.password:hover{
+    color: #155aad !important;
 }
 
 input::placeholder{
@@ -58,4 +71,8 @@ a:hover{
 .text-login{
     font-size: 3.2rem;
     font-family: 'Anton', sans-serif;
+}
+
+.registre-se:hover{
+    color: #198754 !important;
 }
