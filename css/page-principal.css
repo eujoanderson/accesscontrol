@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
 *{
@@ -9,6 +8,7 @@
     border: none;
     outline: none;
     scroll-behavior: smooth;
+    font-family: 'Chakra Petch', sans-serif !important;
 }
 
 a{
@@ -16,7 +16,21 @@ a{
     color: #f1f1f1;
 }
 
-:root{--header-height: 3rem;--nav-width: 68px;--first-color: #4723D9;--first-color-light: #AFA5D9;--white-color: #F7F6FB;--body-font: 'Nunito', sans-serif;--normal-font-size: 1rem;--z-fixed: 100}*,::before,::after{box-sizing: border-box}
+:root{
+--header-height: 3rem;
+--nav-width: 68px;
+--first-color: #4f299b;
+--first-color-light: #AFA5D9;
+--white-color: #F7F6FB;
+--body-font: 'Nunito', sans-serif;
+--normal-font-size: 1rem;
+--z-fixed: 100;
+--black-color: #000;
+--header-color:#363636;
+}
+*,::before,::after{
+    box-sizing: border-box
+}
 
 body{
     position: relative;
@@ -24,6 +38,7 @@ body{
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: .5s;
+    background-color: var(--black-color) !important;
 }
 
 a{text-decoration: none !important}
@@ -38,10 +53,9 @@ a{text-decoration: none !important}
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
-    background-color: var(--white-color);
+    background-color: var(--header-color);
     z-index: var(--z-fixed);
     transition: .5s;
-
 }
 .header_toggle{
     color: var(--first-color);
@@ -54,7 +68,8 @@ a{text-decoration: none !important}
     display: flex;
     justify-content: center;
     border-radius: 50%;
-    overflow: hidden
+    overflow: hidden;
+    cursor: pointer;
 }
 .header_img img{
     width: 40px
@@ -127,6 +142,71 @@ a{text-decoration: none !important}
     height:100vh
 }
 
+.conteudo-principal{
+    margin-top: 6rem;
+}
+
+.menu-users{
+    padding: 10px;
+    gap:2.5rem;
+}
+
+.menu-users a{
+    cursor: pointer ;
+    scale: 1.2;
+    transition: all 0.4s;
+    display: flex;
+    gap:0.2rem;
+}
+
+.menu-users a:hover{
+    cursor: pointer ;
+    scale: 1.3;
+}
+i{
+    font-size: 1.4rem;
+}
+
+.input-group-text{cursor: pointer;}
+
+/* Tabelas */
+table{
+    width: 100%;
+    background-color: var(--header-color);
+    border-radius: 0 0 10px 10px;
+}   
+th{
+    padding: 0.5rem !important;
+}
+
+td{
+    padding: 0.7rem;
+}
+.table-header{
+    background-color: #1c6d48;
+}
+.painel i{
+    font-size: 3rem !important;
+}
+
+.painel a{
+    font-size: 1.5rem !important;
+}
+
+.painel div{
+    scale: 1;
+    background-color: var(--first-color);
+    padding: 1rem;
+    border-radius: 15px;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.painel div:hover{
+    scale: 1.1;
+}
+
+
 @media screen and (min-width: 768px){
     body{
         margin: calc(var(--header-height) + 1rem) 0 0 0;
@@ -136,14 +216,16 @@ a{text-decoration: none !important}
         height: calc(var(--header-height) + 1rem);padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
     }
     .header_img{
-        width: 40px;height: 40px
+        width: 40px;
+        height: 40px;
     }
     .header_img img{
         width: 45px
     }
     .l-navbar{
         left: 0;
-        padding: 1rem 1rem 0 0
+        padding: 1rem 1rem 0 0;
+        
     }
     .show{
         width: calc(var(--nav-width) + 156px)
@@ -157,3 +239,24 @@ a{text-decoration: none !important}
         padding-left: 2rem;
     }
 }
+
+@media screen and (max-width: 600px){
+    .bx-menu{
+        padding: 15px 0 0 10px;
+    }
+
+    .menu-users a{
+        scale: 0.8;
+        gap:0.2rem;
+    }
+
+    .menu-users a:hover{
+        scale: 0.9;
+    }
+
+    .menu-users{
+        padding: 0px;
+        gap:0.2rem;
+    }
+}
+

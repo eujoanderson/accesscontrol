@@ -19,10 +19,6 @@ a{
 	--cl-color:#fff;
 }
 
-
-.login{
-	border: 1px solid red;
-}
 .btn-login{
     background-color: #7431f9 !important;
     transition: all 0.5s;
@@ -76,3 +72,28 @@ a:hover{
 .registre-se:hover{
     color: #198754 !important;
 }
+
+@media screen  and (max-width: 800px){
+    .login{
+        font-size: 3rem;
+        margin-top: -40px;
+    }
+
+    .box-login{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+@media screen  and (max-width: 500px){
+    .login{
+        font-size: 2rem;
+        margin-top: -40px;
+    }
+
+    .box-login{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
