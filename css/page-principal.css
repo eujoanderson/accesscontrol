@@ -123,6 +123,7 @@ a{text-decoration: none !important}
 }
 
 
+/**/
 .boxs p{
     color: rgb(114, 104, 104);
 }
@@ -133,9 +134,7 @@ a{text-decoration: none !important}
     color: #5010d1;
 }
 
-
-
-
+/**/
 .show{
     left: 0
 }
