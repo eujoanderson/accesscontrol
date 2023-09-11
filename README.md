@@ -11,5 +11,5 @@ Primeira tela:<br>
 ![Tela de Login](./img/tela_login.png)
 
 
-Tela Principal - Dashboar:<br>
+Tela Principal - Dashboard:<br>
 *Em desenvolvimento.*
