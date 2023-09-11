@@ -121,6 +121,21 @@ a{text-decoration: none !important}
 .nav_icon{
     font-size: 1.25rem
 }
+
+
+.boxs p{
+    color: rgb(114, 104, 104);
+}
+
+.boxs p::before{
+    content: "|";
+    padding-right: 10px;
+    color: #5010d1;
+}
+
+
+
+
 .show{
     left: 0
 }
