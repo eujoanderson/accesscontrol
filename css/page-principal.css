@@ -157,8 +157,9 @@ a{text-decoration: none !important}
     transition: all 0.4s;
     display: flex;
     gap:0.2rem;
-    padding:3px;
+    padding:4px;
     border-radius: 4px;
+    background-color: #222225;
 }
 
 .menu-users a:hover{
