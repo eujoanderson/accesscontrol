@@ -268,4 +268,8 @@ td{
     }
 }
 
+.box-border{
+    border-bottom: 1px solid #393941;
+}
+
 /*rgb(168, 168, 179)*/
