@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+export const add = document.addEventListener("DOMContentLoaded", function(event) {
    
     const showNavbar = (toggleId, navId, bodyId, headerId) =>{
     const toggle = document.getElementById(toggleId),
@@ -25,14 +25,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     /*===== LINK ACTIVE =====*/
     const linkColor = document.querySelectorAll('.nav_link')
-    
-    function colorLink(){
+     function colorLink(){
     if(linkColor){
-    linkColor.forEach(l=> l.classList.remove('active'))
-    this.classList.add('active')
+        linkColor.forEach(l=> l.classList.remove('active'))
+        this.classList.add('active')
     }
-    }
-    linkColor.forEach(l=> l.addEventListener('click', colorLink))
-    
-     // Your code to run since DOM is loaded and ready
-    });
+} linkColor.forEach(l=> l.addEventListener('click', colorLink))});
+
+export default { add };

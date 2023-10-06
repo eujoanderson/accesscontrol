@@ -25,4 +25,7 @@ function requisicaoPaginas(url){
 
 	ajax.send();
 	//console.log(ajax);
-}  
+}
+
+export default { requisicaoPaginas };
+

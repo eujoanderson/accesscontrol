@@ -27,16 +27,10 @@
     <!-- Content of icons -->
     <link rel="icon" href="img/icon.png">
 
-    <link rel="stylesheet" href="../css/page-principal.css">
-    <script src="../js/script.js"></script>
-
-    <!-- Use a versão mais recente do Bootstrap se disponível -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
     <title>AccessControl - Controle de Acesso</title>
 </head>
 
-<body onload="requisicaoPaginas('../pages/dashboard.html')">
+<body onload="requisicaoPaginas('dashboard.html')">
     <div id="body-pd">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu text-white' id="header-toggle"></i> </div>
@@ -46,11 +40,11 @@
             <nav class="nav">
                 <div> <a href="#" class="nav_logo"> <i class='bx bxl-flutter me-2 p-1' style="font-size: 2rem; margin: 0 0 0 -0.7rem !important;"></i> <span class="nav_logo-name">AccessControl</span>  </a>
                     <div class="nav_list">
-                        <a href="#" class="nav_link active" onclick="requisicaoPaginas('../pages/dashboard.html')"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> 
-                        <a href="#" class="nav_link" onclick="requisicaoPaginas('../pages/users.html')"> <i class='bx bx-user nav_icon'></i> <span class="nav_name" >Usuários</span> </a> 
-                        <a href="#" class="nav_link" onclick="requisicaoPaginas('../pages/alert.html')"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Alertas</span> </a> 
-                        <a href="#" class="nav_link" onclick="requisicaoPaginas('../pages/groups.html')"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Grupos</span> </a> 
-                        <a href="#" class="nav_link" onclick="requisicaoPaginas('../pages/status.html')"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Status</span> </a> 
+                        <a href="#" class="nav_link active" onclick="requisicaoPaginas('dashboard.html')"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> 
+                        <a href="#" class="nav_link" onclick="requisicaoPaginas('users.html')"> <i class='bx bx-user nav_icon'></i> <span class="nav_name" >Usuários</span> </a> 
+                        <a href="#" class="nav_link" onclick="requisicaoPaginas('alert.html')"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Alertas</span> </a> 
+                        <a href="#" class="nav_link" onclick="requisicaoPaginas('groups.html')"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Grupos</span> </a> 
+                        <a href="#" class="nav_link" onclick="requisicaoPaginas('status.html')"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Status</span> </a> 
                     </div>
                 </div> <a href="../index.html" class="nav_link" > <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sair</span> </a>
             </nav>
@@ -64,10 +58,7 @@
         </div>
     </div>
     
-    <script src="../js/ajax.js"></script>
-    <!--Container Main end-->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 
 </html>
