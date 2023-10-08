@@ -289,4 +289,25 @@ td{
 label{
     cursor: pointer;
 }
+
+.icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.icon-edit{
+    scale: 1.2;
+    opacity: 0.6;
+    color: white;
+}
+
+.icon-edit:hover{
+    scale: 1.5;
+    opacity: 1.2;
+}
+
+
 /*rgb(168, 168, 179)*/

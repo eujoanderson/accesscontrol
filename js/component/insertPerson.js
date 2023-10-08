@@ -1,7 +1,8 @@
 import insertTable from './personTable.js';
 
-let ids = []
 
+let ids = []
+let id = 0;
 function insertPerson(event){
 	event.preventDefault();
 
@@ -10,19 +11,17 @@ function insertPerson(event){
 	const name = document.querySelector('#name').value;
 	const card = document.querySelector('#card').value;
 	const setor = document.querySelector('#setor').value;
-	let id = 1;
-
-	for(let id of ids){
-console.log("Testex")
+	
+	if(!ids.includes(id)){
+		ids.push(id)
+	}else{
+		id += 1
+		ids.push(id)
 	}
-
-	console.log(id)
-	const person = {id,name,card,setor};
+	const person = {id, name, card, setor};
 
 	insertTable.personTable(person);
-
 	form.reset();
-
 }
 
 export default { insertPerson }
