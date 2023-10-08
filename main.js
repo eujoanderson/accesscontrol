@@ -5,7 +5,7 @@ import './css/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './img/icon.png';
-import insertPerson from './js/insertPerson.js';
+import insertPerson from './js/component/insertPerson.js';
 
 window.requisicaoPaginas = requisicao.requisicaoPaginas;
 window.insertPerson = insertPerson.insertPerson;

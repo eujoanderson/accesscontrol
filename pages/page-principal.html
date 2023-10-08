@@ -26,7 +26,8 @@
     <title>AccessControl - Controle de Acesso</title>
 </head>
 
-<body onload="requisicaoPaginas('users.html')">
+<!--onload="requisicaoPaginas('users.html')-->
+<body >
     <div id="body-pd">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu text-white' id="header-toggle"></i> </div>
@@ -50,11 +51,117 @@
 
     <div class="conteudo-principal h-100 text-white">
         <div class="container" id="container">
+            <div class="box-border">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Usuários</h1>
+            
+                    <div class="input-group w-50">
+                        <input type="search" class="p-2 w-50" placeholder="Digite o nome do usuário" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-text"><i class='bx bx-search-alt-2' ></i></span>
+                      </div>
+                </div>
+                
+            </div>  
+            
+            <div class="d-flex menu-users mt-5 mb-1 p-2 container">
+                <!-- Button trigger modal -->
+                <a type="button" class="btn btn-primary border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class='bx bxs-add-to-queue' ></i>Add
+                </a>
+                
+                <!-- Modal -->
+                <div class="modal fade text-black" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 " id="exampleModalLabel">Cadatros dos usuários</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="insertPerson(event)">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                      <label for="name" class="form-label">Nome</label></br>
+                                      <input
+                                        type="text"
+                                        class="p-2 w-50 border border-primary"
+                                        id="name"
+                                        placeholder="Digite o nome"
+                                      />
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="card" class="form-label">Número do Card</label></br>
+                                      <input
+                                        type="text"
+                                        class="p-2 w-50 border border-primary"
+                                        id="card"
+                                        placeholder="EX: #11245"
+                                      />
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="setor" class="form-label">Setor</label></br>
+                                      <input
+                                        type="text"
+                                        class="p-2 w-50 border border-primary"
+                                        id="setor"
+                                        placeholder="Suporte"
+                                      />
+                                    </div>
+                                  </div>
+            
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
+                                </div>
+                            </form>				
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                    
+                <a class="btn btn-primary border "><i class='bx bxs-pencil' ></i>Edit</a>
+                <a class="btn btn-primary border"><i class='bx bx-x' ></i>Delete</a>     
+            </div>
+            
+            <table class=" text-center">
+                <thead>
+                  <tr class="table-header">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Card</th>
+                    <th scope="col">Face</th>
+                    <th scope="col">Setor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Joanderson Santos</td>
+                    <td>#11245</td>
+                    <td>Null</td>
+                    <td>Suporte e Manunteção</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Arthur Rodrigues</td>
+                    <td>#10245</td>
+                    <td>True</td>
+                    <td>Suporte</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Adelson Nascimento</td>
+                    <td>No</td>
+                    <td>True</td>
+                    <td>Suporte</td>  
+                  </tr>
+                
+                </tbody>
+              </table>
             
         </div>
     </div>
     
     <script type="module" src="../main.js"></script>
 </body>
-
 </html>
