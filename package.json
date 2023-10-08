@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
-    "module": "^1.2.5"
+    "module": "^1.2.5",
+    "node-sass": "^9.0.0"
   }
 }

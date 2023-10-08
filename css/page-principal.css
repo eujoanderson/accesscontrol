@@ -286,4 +286,7 @@ td{
     border-bottom: 1px solid #393941;
 }
 
+label{
+    cursor: pointer;
+}
 /*rgb(168, 168, 179)*/
