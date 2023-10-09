@@ -1,0 +1,29 @@
+@host=http://localhost:3000
+
+### Read all posts
+
+GET {{host}}/posts
+
+### Create a post
+
+POST {{host}}/posts
+Content-Type: application/json
+
+{
+  "title": "Testando o JSON-Server",
+  "author": "Luiz"
+}
+
+### Update a post
+
+PUT {{host}}/posts/2
+Content-Type: application/json
+
+{
+  "title": "Testando o JSON-Server",
+  "author": "Luiz Carlos"
+}
+
+### Remove a post
+
+DELETE {{host}}/posts/2
