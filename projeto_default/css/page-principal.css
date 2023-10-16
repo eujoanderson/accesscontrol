@@ -236,6 +236,14 @@ td{
     color: black;
 }
 
+.nav-footer{
+    margin-top: 2rem;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border: 1px solid red !important;
+}
+
 
 @media screen and (min-width: 768px){
     body{

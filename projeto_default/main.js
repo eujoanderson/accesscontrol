@@ -20,4 +20,3 @@ const persons = await API.read("person")
 for (const person of persons) {
 	personTable.personTable(person);
 }
-

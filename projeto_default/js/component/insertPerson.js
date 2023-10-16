@@ -1,7 +1,6 @@
 import insertTable from './personTable.js';
 import API from '../services/api.js';
-
-export var lista = []
+export let lista = []
 const persons = await API.read('person')
 
 async function insertPerson(event){
@@ -16,10 +15,7 @@ async function insertPerson(event){
 	lista = {
 		name: name,
 		card: card,
-		setor: setor,
-		users:{
-			name: "Joanderson"
-		}
+		setor: setor
 	};
 
 	if(!persons.some(data => data.name === name)){
@@ -69,9 +65,17 @@ function update(ids, name, card, setor) {
     let buttonUpdate = document.querySelector(`#iconEdit-${ids}`);
 
     buttonUpdate.addEventListener("click", (event) => {
-        idHtml.children[1].innerHTML = `${name}`;
-        idHtml.children[2].innerHTML = `${card}`;
-        idHtml.children[3].innerHTML = `${setor}`;
+        idHtml.children[1].innerHTML = `${name.toUpperCase()}`;
+        idHtml.children[2].innerHTML = `${card.toUpperCase()}`;
+        idHtml.children[3].innerHTML = `${setor.toUpperCase()}`;
+
+        lista = {
+            name: name.toUpperCase(),
+            card: card.toUpperCase(),
+            setor: setor.toUpperCase()
+        };
+
+        const update = API.update('person',ids, lista)
     });
 }
 
