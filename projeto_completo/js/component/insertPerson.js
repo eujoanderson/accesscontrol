@@ -30,12 +30,12 @@ async function insertPerson(event){
 
 }
 
-function remove(id){
-	const remove_person = API.remove(`person/${id}`)
+async function remove(id){
+	const remove_person = await API.remove(`person/${id}`)
 	location.reload()
 };
 
-function update(ids, name, card, setor) {
+async function update(ids, name, card, setor) {
     let idHtml = document.getElementById(`${ids}`);
     let input1, input2, input3;
 

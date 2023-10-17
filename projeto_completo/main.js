@@ -9,13 +9,14 @@ import INSERT from './js/component/insertPerson.js';
 import personTable from './js/component/personTable.js';
 import { lista } from './js/component/insertPerson.js'
 import API from './js/services/api.js';
-import entrar from './js/component/autenticacao.js';
+import AUTH from './js/component/autenticacao.js';
 
 window.requisicaoPaginas = requisicao.requisicaoPaginas;
 window.insertPerson = INSERT.insertPerson;
 window.remove = INSERT.remove;
 window.update = INSERT.update;
-window.entrar = entrar.entrar;
+window.entrar = AUTH.entrar;
+window.cadastrar = AUTH.cadastrar;
 
 const persons = await API.read("person")
 

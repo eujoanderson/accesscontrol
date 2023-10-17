@@ -15,6 +15,7 @@ Para que o projeto funcione é preciso instalar o Vite, Bootstrap e Json-Server
 *npm i bootstrap* <br>
 *npm i json-server*<br>
 *npm create vite@latest control -- --template vanilla*<br>
+*npm install js-md5*
 
 Para poder rodar o Json-server acesse a pasta Json-Server e utilize o seguinte comando.
 *npx json-server -H 0.0.0.0 --watch db.json*

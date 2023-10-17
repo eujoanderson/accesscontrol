@@ -24,7 +24,7 @@ async function read(resource) {
   return await response.json();
 }
 
-async function update(resource, id, data) {
+async function update(resource,id, data) {
   const url = `${host}/${resource}/${id}`;
 
   const config = {
