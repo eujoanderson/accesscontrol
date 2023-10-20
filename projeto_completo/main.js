@@ -17,6 +17,8 @@ window.remove = INSERT.remove;
 window.update = INSERT.update;
 window.entrar = AUTH.entrar;
 window.cadastrar = AUTH.cadastrar;
+window.recuperarSenha = AUTH.recuperarSenha;
+window.session_sair = AUTH.session_sair;
 
 const persons = await API.read("person")
 
