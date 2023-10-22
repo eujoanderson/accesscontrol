@@ -20,9 +20,7 @@ async function session_sair(id){
 				session: 0
 			};
 			const persons_update = await API.update('users', u.id, data);
-			console.log("Dados do usuário atualizados");
 			window.location.href = "../../index.html";
-			console.log("Redirecionando...");
 			break;
 		}
 	}
@@ -42,7 +40,6 @@ function createAlert(icone, mensagem, cor){
 }
 
 async function entrar(){
-
 	const email = document.querySelector("#floatingInput").value;
 	const senha = document.querySelector("#floatingPassword").value;
 
@@ -50,22 +47,23 @@ async function entrar(){
 
 	if( users.some(data => data.email === md5(email) && users.some(date => date.senha === md5(senha) ) )){
 
-		if(users.some(data => data.session === 1)){
-			alert("Exite um user conectado !")
-		}else{
-			for(const u of users){
-				const data = {
-					email: md5(email),
-					senha: md5(senha),
-					session: 1
-				};
+		const data = {
+			email: md5(email),
+			senha: md5(senha),
+			session: 1
+		};
+
+		for (const u of users){
+			let i = users.indexOf(u);
+	
+			if(users[i].email === md5(email)){
 				const persons_update = await API.update('users', u.id, data);
 				break;
 			}
-	
-			window.location.href = "../../pages/page-principal.html";
 		}
-	}else{
+		window.location.href = "../../pages/page-principal.html";
+	}
+	else{
 		alert("Usuário não encontrado!");
 	}
 }
@@ -98,6 +96,10 @@ async function cadastrar(){
 				const createUser = await API.create('users', data);
 
 				createAlert(`<i class='bx bxs-check-square px-2'></i>`, 'Usuário criado com sucesso!', 'success');
+
+				const tim = setTimeout(() => {
+					window.location.href = "../../index.html";	
+				}, 2000);
 				removeElement();
 			}else{
 				createAlert(`<i class='bx bx-repost px-2' ></i>`, 'Usuário já existe, tente novamente!', 'danger');

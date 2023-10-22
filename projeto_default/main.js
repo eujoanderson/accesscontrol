@@ -13,7 +13,7 @@ import AUTH from './js/component/autenticacao.js';
 
 window.requisicaoPaginas = requisicao.requisicaoPaginas;
 window.insertPerson = INSERT.insertPerson;
-window.remove = INSERT.remove;
+window.remove_user = INSERT.remove_user;
 window.update = INSERT.update;
 window.entrar = AUTH.entrar;
 window.cadastrar = AUTH.cadastrar;

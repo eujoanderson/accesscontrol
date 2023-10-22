@@ -2,17 +2,44 @@ import insertTable from './personTable.js';
 import API from '../services/api.js';
 import AUTH from '../component/autenticacao.js';
 export let lista = [];
+let persons = await API.read('person');
+let users = await API.read('users');
 window.session_sair = AUTH.session_sair;
 
+
+async function remove_alert_user(cor, message, condic){
+    const data = `
+        <div id="alert_user" class="alert  alert-${cor} alert-dismissible fade show container-user" role="alert" >
+            ${message}
+            <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+
+        const alerts = document.getElementById("container_2");
+        alerts.innerHTML = data + alerts.innerHTML;
+
+        const alert_user = document.getElementById("alert_user");
+        const tim = setTimeout(() => {
+            alert_user.remove();	
+        }, 3000);
+        
+        if(Number(condic) === 1){
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+}
 
 async function insertPerson(event){
 	event.preventDefault();
 
-    var persons = await API.read('person');
+    persons = await API.read('person');
+    users = await API.read('users');
+    
+    for (const u of users){
+        let i = users.indexOf(u);
 
-    //Testando se o user está autenticado para fazer alterações
-    for(const sessi of AUTH.testUser){
-        if(sessi.session === 1){
+        if(users[i].session === 1 && users[i].email === u.email){
+            
             const form = document.querySelector("form");
         
             const name = document.querySelector('#name').value.toUpperCase();
@@ -24,42 +51,49 @@ async function insertPerson(event){
                 card: card,
                 setor: setor
             };
-        
+    
             if(!persons.some(data => data.name === name)){
                 let responses = await API.create('person', lista)
                 for(let person of [responses]){
                     insertTable.personTable(person);
-                }
+                    remove_alert_user('success', 'Usuário Cadastrado com sucesso!','0');
+            }
+            }else{
+                remove_alert_user('danger', 'Usuário já existe, tente cadastrar novamente', '0');
+            }
+            
+                break;
             }
             else{
-                alert("Usuário já existe.");
-            }
+                AUTH.session_sair('0');
+                break;
+        }
+        const persons_update = await API.update('users', u.id, data);
+        break;
+    }
+}
+
+async function remove_user(id){
+
+    persons = await API.read('person');
+    users = await API.read('users');
+    
+    for (const u of users){
+        let i = users.indexOf(u);
+
+        if(users[i].session === 1 && users[i].email === u.email){
+            const remove_person = await API.remove(`person/${id}`);
+            
+            remove_alert_user('info', 'Usuário removido com sucesso!', '1');
+            
+            break;
         }
         else{
             AUTH.session_sair('0');
             break;
         }
-}
-
-}
-
-async function remove(id){
-
-    //Testando se o user está autenticado para fazer remoções
-
-    for(const sessi of AUTH.testUser){
-
-        if(sessi.session === 1){
-            const remove_person = await API.remove(`person/${id}`);
-            location.reload();
-            break;
-        }
-        else{
-            AUTH.session_sair('0')
-        }
     }
-    
-	
+
 };
 
 async function update(ids, name, card, setor) {
@@ -116,4 +150,4 @@ async function update(ids, name, card, setor) {
     buttonUpdate.addEventListener("click", buttonClickHandler);
 }
 
-export default { insertPerson, remove, update }
+export default { insertPerson, remove_user, update }

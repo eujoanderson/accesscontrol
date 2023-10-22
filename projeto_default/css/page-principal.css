@@ -196,6 +196,16 @@ i{
 
 .input-group-text{cursor: pointer;}
 
+.container-user{
+    position: absolute !important;
+    top: 0;
+    margin:0px  25% 0 37%;
+    display: flex !important;
+    width: 25% !important;
+    justify-content: center;
+  
+}
+
 /* Tabelas */
 table{
     width: 100%;
