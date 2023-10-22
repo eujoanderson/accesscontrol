@@ -70,18 +70,6 @@ a{text-decoration: none !important}
     font-size: 1.5rem;
     cursor: pointer
 }
-.header_img{
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-}
-.header_img img{
-    width: 40px
-}
 .l-navbar{
     position: fixed;
     top: 0;
@@ -206,6 +194,17 @@ i{
   
 }
 
+.entrar_user {
+    position: fixed !important;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex !important;
+    width: 50% !important;
+    justify-content: center;
+}
+
+
 /* Tabelas */
 table{
     width: 100%;
@@ -308,6 +307,31 @@ td{
     }
 }
 
+@media screen and (max-width: 802px){
+    
+    .entrar_user {
+        position: fixed !important;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex !important;
+        width: 50% !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .boxs{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.date_box {
+    margin-left: auto !important;
+    align-self: flex-end !important;
+}
+
 .box-border{
     border-bottom: 1px solid #393941;
 }
@@ -333,6 +357,13 @@ label{
 .icon-edit:hover{
     scale: 1.5;
     opacity: 1.2;
+}
+
+.name{
+    background-color: #5010d1 !important;
+    color: #ffffff !important;
+    padding: 5px 15px 5px 5px;
+    text-align: center;
 }
 
 /*rgb(168, 168, 179)*/
