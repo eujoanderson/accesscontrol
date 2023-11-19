@@ -54,6 +54,4 @@ if(qtde_users != null){
 	qtde_cards.insertAdjacentHTML('beforeend', cards_user);
 }
 
-
-
 INSERT.alert_load();

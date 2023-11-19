@@ -2,8 +2,10 @@ import API from '../services/api.js';
 import md5 from 'js-md5';
 
 let testUser = await API.read("users");
+
 let nameTest = "";
-	
+
+// Function para criar os alertas dinamicos
 function createAlert(icone, mensagem, cor){
 	const alertCreate = `
 	<div id="alert" class="alert  alert-${cor} alert-dismissible fade show user-create" role="alert">
@@ -12,7 +14,6 @@ function createAlert(icone, mensagem, cor){
 		<button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 	`;
-
 	const cadastro = document.getElementById("cadastro");
 	cadastro.innerHTML = alertCreate + cadastro.innerHTML;
 	
@@ -23,7 +24,7 @@ function createAlert(icone, mensagem, cor){
 }
 
 
-
+// Função dos Alerts
 async function remove_alert_user(cor, message, condic){
     const data = `
         <div id="alert_user" class="alert  alert-${cor} alert-dismissible fade show entrar_user" role="alert" >
@@ -47,6 +48,7 @@ async function remove_alert_user(cor, message, condic){
         }
 }
 
+// Função para recuperar o ID da session do user
 async function session_sair(id){
 	for(const u of testUser){
 
@@ -65,28 +67,29 @@ async function session_sair(id){
 }
 
 
-
+// Função para logar no site
 async function entrar(){
 	const email = document.querySelector("#floatingInput").value;
 	const senha = document.querySelector("#floatingPassword").value;
 
-	const users = await API.read("users");
+	testUser = await API.read("users");
 
-	if( users.some(data => data.email === md5(email) && users.some(date => date.senha === md5(senha) ) )){
+
+	if( testUser.some(data => data.email === md5(email) && testUser.some(date => date.senha === md5(senha) ) )){
 		const emailSplit = email.split("@");
 		nameTest += emailSplit[0]
 
-		const data = {
-			email: md5(email),
-			senha: md5(senha),
-			session: 1,
-			name: emailSplit[0]
-		};
+		for (const u of testUser){
+			let i = testUser.indexOf(u);
 
-		for (const u of users){
-			let i = users.indexOf(u);
+			const data = {
+				email: md5(email),
+				senha: testUser[i].senha,
+				session: 1,
+				name: emailSplit[0]
+			};
 	
-			if(users[i].email === md5(email)){
+			if(testUser[i].email === md5(email)){
 				const persons_update = await API.update('users', u.id, data);
 				capture_alert(email, 'Autenticado', 'alerts');
 				break;
@@ -97,7 +100,7 @@ async function entrar(){
 	else{
 		remove_alert_user('danger', 'Usuário não encontrado!', '0');
 
-		if( users.some(data => data.email === md5(email))){
+		if( testUser.some(data => data.email === md5(email))){
 			capture_alert(email, 'Não autenticado','alerts_error');
 		}
 	}
@@ -134,7 +137,6 @@ async function cadastrar(){
 	const createEmail = document.querySelector("#createEmail");
 	const createPassword = document.querySelector("#createPassword");
 	const createTestPassword = document.querySelector("#createTestPassword");
-
 
 	const emailValue = createEmail.value;
 	const passwordValue = createPassword.value;
@@ -184,7 +186,8 @@ async function recuperarSenha(){
 	if(email != "" && testPassword != "" && newPassword != ""){
 		if(testPassword === newPassword){
 			const emailSplit = email.split("@");
-			nameTest += emailSplit[0]
+			nameTest += emailSplit[0];
+
 			for(const p of persons){
 				if(md5(email) === p.email){
 					

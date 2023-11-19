@@ -131,9 +131,7 @@ async function update(ids, name, card, setor) {
         }
     }
     
-
     let buttonUpdate = document.querySelector(`#iconEdit-${ids}`);
-    
     buttonUpdate.removeEventListener("click", buttonClickHandler);
 
     async function buttonClickHandler() {
@@ -199,8 +197,6 @@ async function alert_load(){
             div_users.insertAdjacentHTML('beforeend', row);   
         }
     }
-        
-    
 }
 
 export default { insertPerson, remove_user, update, alert_load }
