@@ -55,3 +55,28 @@ if(qtde_users != null){
 }
 
 INSERT.alert_load();
+
+
+/* 
+import express from 'express';
+const app = express();
+import path from 'path';
+app.use(express.json());
+
+class HTTPError extends Error {
+  constructor(message, code) {
+    super(message);
+    this.code = code;
+  }
+}
+
+const currentDir = path.resolve('./');
+app.post('/', (req, res) => {
+  const indexPath = path.join(currentDir, 'a.html');
+  res.sendFile(indexPath);
+});
+
+
+app.listen(3005, () => {
+  console.log('Server started on port 3000');
+});*/

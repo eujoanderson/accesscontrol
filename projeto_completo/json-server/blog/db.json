@@ -391,6 +391,18 @@
       "message": "Autenticado",
       "date": "19/11/2023 12:48:7",
       "id": 54
+    },
+    {
+      "email": "teste@gmail.com",
+      "message": "Autenticado",
+      "date": "19/11/2023 16:33:13",
+      "id": 55
+    },
+    {
+      "email": "teste@gmail.com",
+      "message": "Autenticado",
+      "date": "19/11/2023 18:19:58",
+      "id": 56
     }
   ],
   "alerts_error": [
