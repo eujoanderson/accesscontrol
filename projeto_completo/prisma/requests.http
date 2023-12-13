@@ -1,0 +1,97 @@
+@baseUrl=http://localhost:3000
+@createdHostId = {{createHost.response.body.$.id}}
+@token = {{signin.response.body.$.token}}
+@userId = {{userMe.response.body.$.id}}
+
+### Create Host
+
+# @name createHost
+POST {{baseUrl}}/user/
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "google search",
+  "address": "www.google.com"
+}
+
+### Read Hosts
+
+GET {{baseUrl}}/user
+Authorization: bearer {{token}}
+
+### Read a host
+
+GET {{baseUrl}}/user/{{createdHostId}}
+Authorization: bearer {{token}}
+
+### Update a host
+
+PUT {{baseUrl}}/User/{{createdHostId}}
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Google Search",
+  "address": "www.google.com"
+}
+
+### Delete a host
+
+DELETE {{baseUrl}}/User/{{createdHostId}}
+Authorization: bearer {{token}}
+
+### Create reachability
+
+POST {{baseUrl}}/User/{{createdHostId}}/reachabilities
+Authorization: bearer {{token}}
+
+### Read reachabilities by Host
+
+GET {{baseUrl}}/user/{{createdHostId}}/reachabilities
+Authorization: bearer {{token}}
+
+### Read all reachabilities
+
+GET {{baseUrl}}/reachabilities
+Authorization: bearer {{token}}
+
+### Create User
+
+# @name createUser
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Carlos",
+  "email": "carlos@email.com",
+  "password": "123",
+  "confirmationPassword": "123"
+}
+
+### Signin Ok
+
+# @name signin
+POST {{baseUrl}}/signin
+Content-Type: application/json
+
+{
+  "email": "carlos@email.com",
+  "password": "123"
+}
+
+### Signin fail
+
+POST {{baseUrl}}/signin
+Content-Type: application/json
+
+{
+  "email": "fail@email.com",
+  "password": "123"
+}
+
+### Read User (with token)
+
+# @name userMe
+GET {{baseUrl}}/users/me
+Authorization: bearer {{token}}
