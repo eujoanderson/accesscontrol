@@ -1,7 +1,8 @@
-import API from '../services/api.js';
+//import API from '../services/api.js';
 import md5 from 'js-md5';
+import Auth from '../lib/auth';
 
-let testUser = await API.read("users");
+//let testUser = await API.read("users");
 
 let nameTest = "";
 
@@ -48,63 +49,43 @@ async function remove_alert_user(cor, message, condic){
         }
 }
 
-// Função para recuperar o ID da session do user
-async function session_sair(id){
-	for(const u of testUser){
 
-		if(u.session === Number(id)){
-			const data = {
-				email: u.email,
-				senha: u.senha,
-				session: 0,
-				name: nameTest
-			};
-			const persons_update = await API.update('users', u.id, data);
-			window.location.href = "../../index.html";
-			break;
-		}
-	}
-}
+/************************** LOGIN ******************************** */
 
 
 // Função para logar no site
 async function entrar(){
-	const email = document.querySelector("#floatingInput").value;
-	const senha = document.querySelector("#floatingPassword").value;
+	event.preventDefault();
 
-	testUser = await API.read("users");
+	const form = document.querySelector('form');
+	const user = Object.fromEntries(new FormData(form));
 
-
-	if( testUser.some(data => data.email === md5(email) && testUser.some(date => date.senha === md5(senha) ) )){
-		const emailSplit = email.split("@");
-		nameTest += emailSplit[0]
-
-		for (const u of testUser){
-			let i = testUser.indexOf(u);
-
-			const data = {
-				email: md5(email),
-				senha: testUser[i].senha,
-				session: 1,
-				name: emailSplit[0]
-			};
-	
-			if(testUser[i].email === md5(email)){
-				const persons_update = await API.update('users', u.id, data);
-				capture_alert(email, 'Autenticado', 'alerts');
-				break;
-			}
-		}
-		window.location.href = "../../pages/page-principal.html";
-	}
-	else{
-		remove_alert_user('danger', 'Usuário não encontrado!', '0');
-
-		if( testUser.some(data => data.email === md5(email))){
-			capture_alert(email, 'Não autenticado','alerts_error');
-		}
+	const configRequest = {
+	  method: 'post',
+	  headers: {
+		'Content-Type': 'application/json',
+	  },
+	  body: JSON.stringify(user),
+	};
+  
+	const { auth, token } = await (
+	  await fetch('/api/signin', configRequest)
+	).json();
+  
+	if (auth) {
+	  Auth.signin(token);
+	} else {
+	  remove_alert_user('danger', 'Error no login!', '0');
 	}
 }
+
+// Função para recuperar o ID da session do user
+async function session_sair(id){
+	
+}
+
+
+/********************************************************** */
 
 async function times(){
 	const dataHoraAtual = new Date();
@@ -121,94 +102,137 @@ async function times(){
 }
 
 async function capture_alert(email, message, db){
-	
-	const data = {
-		email: email,
-		message: message,
-		date:await times()
-	};
-	const db_alert = await API.create(`${db}`,data);
+	/*
+		const data = {
+			email: email,
+			message: message,
+			date:await times()
+		};
+		const db_alert = await API.create(`${db}`,data);
+	*/
 }
 
 
 async function cadastrar(){
 
 	event.preventDefault();
-	const createEmail = document.querySelector("#createEmail");
-	const createPassword = document.querySelector("#createPassword");
-	const createTestPassword = document.querySelector("#createTestPassword");
 
-	const emailValue = createEmail.value;
-	const passwordValue = createPassword.value;
-	const testPasswordValue = createTestPassword.value;
+	const createEmail = document.querySelector("#createEmail").value;
+	const createPassword = document.querySelector("#createPassword").value;
+	const createTestPassword = document.querySelector("#createTestPassword").value;
 
-	if(createEmail.value != "" && createPassword.value != "" && createTestPassword.value != "" ){
-		if( createPassword.value === createTestPassword.value){
+	if(createPassword != "" && createTestPassword != ""){
+
+		if(createPassword != createTestPassword ){
+			createAlert("<i class='bx bx-repost px-2' ></i>", 'As senhas precisam ser iguais!', 'danger');
+		}else{
+			const form = document.querySelector('form');
+			const user_new = Object.fromEntries(new FormData(form));
+		
+	
+			const configRequest = {
+				method: 'get',
+			};
 			
-			if(!testUser.some(data => data.email === md5(createEmail.value) )){
-				const md5_email = md5(createEmail.value);
-				const md5_senha = md5(createPassword.value);
-				const emailSplit = createEmail.value.split("@");
-				nameTest += emailSplit[0]
-
-				const data = {
-					email: md5_email,
-					senha: md5_senha,
-					session: 0,
-					name: emailSplit[0]
-				}
-				const createUser = await API.create('users', data);
-
-				createAlert(`<i class='bx bxs-check-square px-2'></i>`, 'Usuário criado com sucesso!', 'success');
-
-				const tim = setTimeout(() => {
-					window.location.href = "../../index.html";	
-				}, 2000);
+			const response = await fetch('/api/users/emails', configRequest);
+			const email = await response.json();
+	
+			const name = user_new.email_new.split("@")[0];
+			const capitalized = name[0].toUpperCase() + name.substr(1);
+			const list_emails = [];
+	
+			for (let i = 0; i < email.length; i++) {
+				const currentObject = email[i];
+				list_emails.push(currentObject.email);
+			}
+	
+			//Se o email já exite no banco de dados	
+			if(!list_emails.includes(user_new.email_new)){
+				const user = {
+					"name": capitalized,
+					"email": user_new.email_new,
+					"password":user_new.password_new,
+				};
+	
+				const configRequest = {
+					method: 'post',
+					headers: {
+					  'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(user),
+				};
+	
+				const user_response = await (
+					await fetch('/api/users', configRequest)
+				).json();
+	
+				createAlert("<i class='bx bx-repost px-2' ></i>", 'O usuário foi criado com sucesso!', 'success');
+	
 			}else{
-				createAlert(`<i class='bx bx-repost px-2' ></i>`, 'Usuário já existe, tente novamente!', 'danger');
+				createAlert("<i class='bx bx-repost px-2' ></i>", 'User já existe!', 'danger');
 			}
 		}
-		else{
-			createAlert(`<i class='bx bx-stop px-2'></i>`, 'As senhas precisam ser iguais!', 'info');
-		}
 	}else{
-		createAlert(`<i class='bx bx-x-circle px-2'></i>`, 'Os campos não podem ser vazio!','danger' );
-	}	
+		createAlert(`<i class='bx bx-x-circle px-2'></i>`, 'Os campos não podem ser vazio!','danger' )
+	}
 }
 
 async function recuperarSenha(){
 	event.preventDefault();
+	
 	const email = document.querySelector("#inputMail").value;
 	const testPassword = document.querySelector("#testPassword").value;
 	const newPassword = document.querySelector("#newPassword").value;
 
-	const persons = await API.read('users');
-	if(email != "" && testPassword != "" && newPassword != ""){
-		if(testPassword === newPassword){
-			const emailSplit = email.split("@");
-			nameTest += emailSplit[0];
+	if(testPassword != "" && newPassword != ""){
+		if(newPassword != testPassword){
+			createAlert("<i class='bx bx-repost px-2' ></i>", 'As senhas precisam ser iguais!', 'danger')
+		}else{
+			const configRequest = {
+				method: 'get',
+			};
+			
+			const response = await fetch('/api/emails', configRequest);
+			const email_res = await response.json();
+			let id = 0;
+			
+			for (let i = 0; i < email_res.length; i++) {
+				const currentObject = email_res[i];
 
-			for(const p of persons){
-				if(md5(email) === p.email){
-					
-					const data = {
-						email: md5(email),
-						senha: md5(testPassword),
-						session: 0,
-						name: emailSplit[0]
-						
-					};
-					const persons_update = await API.update('users', p.id, data);
+				console.log(currentObject.email)
 
-					createAlert(`<i class='bx bxs-check-square px-2'></i>`, 'Senha alterada com sucesso!', 'success');
+				if(email === currentObject.email){
+					id = currentObject.id;
+					break;
+				}else{
+					id = -1;
 				}
 			}
-		}else{
-			createAlert("<i class='bx bx-repost px-2' ></i>", 'As senhas precisam ser iguais!', 'danger');
+
+			const user = {
+				"password":testPassword,
+			};
+
+			const configRequestPut = {
+				method: 'put',
+				headers: {
+				  'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(user),
+			};
+
+			const responsePut = await fetch(`/api/user/update_user/${id}`, configRequestPut);
+			const emailPut = await responsePut.json();
+			console.log(emailPut)
+
 		}
+		
 	}else{
-		createAlert(`<i class='bx bx-x-circle px-2'></i>`, 'Os campos não podem ser vazio!','danger' );
-	}	
+		createAlert(`<i class='bx bx-x-circle px-2'></i>`, 'Os campos não podem ser vazio!','danger' )
+	}
+	
+	//createAlert(`<i class='bx bxs-check-square px-2'></i>`, 'Senha alterada com sucesso!', 'success');
+	//createAlert(`<i class='bx bx-x-circle px-2'></i>`, 'Os campos não podem ser vazio!','danger' );
 }
 
-export default {entrar, cadastrar, recuperarSenha, session_sair, testUser}
+export default {entrar, cadastrar, recuperarSenha, session_sair}

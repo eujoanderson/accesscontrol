@@ -1,6 +1,15 @@
 import prisma from '../database/index.js';
 
+import bcrypt from 'bcrypt';
+
+const saltRounds = Number(process.env.SALT);
+
+
 async function create(user) {
+
+    const hash = await bcrypt.hash(user.password, saltRounds);
+    user.password = hash;
+
     const newuser = await prisma.user.create({
         data: user,
     });
@@ -8,8 +17,39 @@ async function create(user) {
     return newuser;
 }
 
+async function readByEmail(email) {
+    const user = await prisma.user.findFirst({
+      where: {
+        email,
+      },
+    });
+  
+    return user;
+}
+
 async function readAll() {
     const users = await prisma.user.findMany();
+
+    return users;
+}
+
+async function readEmail() {
+    const users = await prisma.user.findMany({
+        select: {
+            email: true,
+          },
+    });
+
+    return users;
+}
+
+async function readUsers() {
+    const users = await prisma.user.findMany({
+        select: {
+            id: true,
+            email: true,
+          },
+    });
 
     return users;
 }
@@ -25,6 +65,10 @@ async function read(id) {
 }
 
 async function update(user, id) {
+
+    const hash = await bcrypt.hash(user.password, saltRounds);
+    user.password = hash;
+
     const newuser = await prisma.user.update({
         data: user,
         where: {
@@ -49,4 +93,7 @@ export default {
     read,
     update,
     remove,
+    readByEmail,
+    readEmail,
+    readUsers
 };

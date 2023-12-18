@@ -1,9 +1,9 @@
 import insertTable from './personTable.js';
-import API from '../services/api.js';
+//import API from '../services/api.js';
 import AUTH from '../component/autenticacao.js';
 export let lista = [];
-let persons = await API.read('person');
-let users = await API.read('users');
+//let persons = await API.read('person');
+//let users = await API.read('users');
 
 window.session_sair = AUTH.session_sair;
 
@@ -32,6 +32,7 @@ async function remove_alert_user(cor, message, condic){
 async function insertPerson(event){
 	event.preventDefault();
 
+    /* 
     persons = await API.read('person');
     users = await API.read('users');
     
@@ -67,10 +68,13 @@ async function insertPerson(event){
         const persons_update = await API.update('users', u.id, data);
         break;
     }
+
+    */
 }
 
 async function remove_user(id){
 
+    /*
     persons = await API.read('person');
     users = await API.read('users');
     
@@ -88,13 +92,14 @@ async function remove_user(id){
             AUTH.session_sair('0');
             break;
         }
-    }
+    }*/
 
 };
 
 async function update(ids, name, card, setor) {
 
     event.preventDefault();
+    /* 
     let idHtml = document.getElementById(`${ids}`);
     let input1, input2, input3;
     users = await API.read('users');
@@ -149,10 +154,11 @@ async function update(ids, name, card, setor) {
     }
 
     buttonUpdate.addEventListener("click", buttonClickHandler);
+    */
 }
 
 async function alert_load(){
-
+    /*
     const div_users = document.getElementById("alerts_users");
 
     let alerts = await API.read('alerts');
@@ -197,6 +203,7 @@ async function alert_load(){
             div_users.insertAdjacentHTML('beforeend', row);   
         }
     }
+    */
 }
 
 export default { insertPerson, remove_user, update, alert_load }

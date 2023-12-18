@@ -6,13 +6,13 @@
 ### Create Host
 
 # @name createHost
-POST {{baseUrl}}/user/
-Authorization: bearer {{token}}
+POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "name": "google search",
-  "address": "www.google.com"
+  "name": "Joanderson",
+  "email": "teste1@gmail.com",
+  "password": "123"
 }
 
 ### Read Hosts
@@ -21,6 +21,26 @@ GET {{baseUrl}}/user
 Authorization: bearer {{token}}
 
 ### Read a host
+
+
+### Reads Hosts
+
+GET {{baseUrl}}/users/emails
+
+### Reads a host
+
+
+### Reads Hosts
+
+GET {{baseUrl}}/emails
+
+### Reads a host
+
+
+
+GET {{baseUrl}}/signin
+Authorization: bearer {{token}}
+###
 
 GET {{baseUrl}}/user/{{createdHostId}}
 Authorization: bearer {{token}}
@@ -34,6 +54,19 @@ Content-Type: application/json
 {
   "name": "Google Search",
   "address": "www.google.com"
+}
+
+### Delete a host
+
+
+
+### Update a host
+
+PUT {{baseUrl}}/user/update_user/3
+Content-Type: application/json
+
+{ 
+  "password": "123"
 }
 
 ### Delete a host
@@ -76,7 +109,7 @@ POST {{baseUrl}}/signin
 Content-Type: application/json
 
 {
-  "email": "carlos@email.com",
+  "email": "joanderson@gmail.com",
   "password": "123"
 }
 
@@ -86,7 +119,7 @@ POST {{baseUrl}}/signin
 Content-Type: application/json
 
 {
-  "email": "fail@email.com",
+  "email": "teste1@gmail.com",
   "password": "123"
 }
 

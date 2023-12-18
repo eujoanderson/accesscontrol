@@ -29,22 +29,26 @@ router.post('/user', isAuthenticated, async (req, res) => {
     }
 });
 
+//Emails
+router.get('/users/emails', async (req, res) => {
+    const users = await User.readEmail();
+    
+    res.json(users);
+});
+
+//Emails e IDS
+router.get('/emails', async (req, res) => {
+    const users = await User.readUsers();
+    
+    res.json(users);
+});
+
+
+
 router.get('/user', isAuthenticated, async (req, res) => {
     const users = await User.readAll();
 
     res.json(users);
-});
-
-router.get('/hosts/:id', isAuthenticated, async (req, res) => {
-    const id = Number(req.params.id);
-
-    const user = await User.read(id);
-
-    if (id && user) {
-        res.json(user);
-    } else {
-        throw new HTTPError('Invalid id to read host', 400);
-    }
 });
 
 router.put('/user/:id', isAuthenticated, async (req, res) => {
@@ -60,6 +64,22 @@ router.put('/user/:id', isAuthenticated, async (req, res) => {
         throw new HTTPError('Invalid data to update host', 400);
     }
 });
+
+
+router.put('/user/update_user/:id', async (req, res) => {
+    const id = Number(req.params.id);
+
+    const user = req.body;
+
+    if (id && user) {
+        const newUser = await Host.update(user, id);
+
+        res.json(newUser);
+    } else {
+        throw new HTTPError('Invalid data to update host', 400);
+    }
+});
+
 
 router.delete('/user/:id', isAuthenticated, async (req, res) => {
     const id = Number(req.params.id);
@@ -93,17 +113,6 @@ router.post('/user/:id/reachabilities', isAuthenticated, async (req, res) => {
     res.json(times);
 });
 
-router.get('/hosts/:id/reachabilities', isAuthenticated, async (req, res) => {
-    const id = Number(req.params.id);
-
-    const reachabilities = await Reachability.readByHost(id);
-
-    if (id && reachabilities) {
-        res.json(reachabilities);
-    } else {
-        throw new HTTPError('Invalid id to read host', 400);
-    }
-});
 
 router.get('/reachabilities', isAuthenticated, async (req, res) => {
     const reachabilities = await Reachability.readAll();
@@ -122,6 +131,7 @@ router.post('/users', async (req, res) => {
 
     res.status(201).json(newUser);
 });
+
 
 router.post('/signin', async (req, res) => {
     try {

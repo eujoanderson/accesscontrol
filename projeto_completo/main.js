@@ -1,4 +1,3 @@
-import requisicao from './js/ajax.js';
 import './js/script.js';
 import './css/page-principal.css';
 import './css/style.css';
@@ -8,10 +7,11 @@ import './img/icon.png';
 import INSERT from './js/component/insertPerson.js';
 import personTable from './js/component/personTable.js';
 import { lista } from './js/component/insertPerson.js'
-import API from './js/services/api.js';
+//import API from './js/services/api.js';
 import AUTH from './js/component/autenticacao.js';
+import AUTH_USER from './js/lib/auth.js';
 
-window.requisicaoPaginas = requisicao.requisicaoPaginas;
+//window.requisicaoPaginas = requisicao.requisicaoPaginas;
 window.insertPerson = INSERT.insertPerson;
 window.remove_user = INSERT.remove_user;
 window.update = INSERT.update;
@@ -20,19 +20,26 @@ window.cadastrar = AUTH.cadastrar;
 window.recuperarSenha = AUTH.recuperarSenha;
 window.session_sair = AUTH.session_sair;
 window.alert_load = INSERT.alert_load;
+window.signout = AUTH_USER.signout;
 
 
-const persons = await API.read("person");
-const users = await API.read("users");
+//const persons = await API.read("person");
+//const users = await API.read("users");
+
+/*
 
 const qtde_users = document.getElementById("qtde_users");
 const qtde_cards = document.getElementById("qtde_cards");
 const header_img = document.querySelector("#header_img");
 let cards_user = 0;
+*/
 
-for (const person of persons) {
+/*for (const person of persons) {
 	personTable.personTable(person);
-}
+}*/
+/*
+
+
 
 for (const u of users){
 	let i = users.indexOf(u);
@@ -53,30 +60,7 @@ if(qtde_users != null){
 	qtde_users.insertAdjacentHTML('beforeend', persons.length);
 	qtde_cards.insertAdjacentHTML('beforeend', cards_user);
 }
+*/
 
 INSERT.alert_load();
 
-
-/* 
-import express from 'express';
-const app = express();
-import path from 'path';
-app.use(express.json());
-
-class HTTPError extends Error {
-  constructor(message, code) {
-    super(message);
-    this.code = code;
-  }
-}
-
-const currentDir = path.resolve('./');
-app.post('/', (req, res) => {
-  const indexPath = path.join(currentDir, 'a.html');
-  res.sendFile(indexPath);
-});
-
-
-app.listen(3005, () => {
-  console.log('Server started on port 3000');
-});*/
