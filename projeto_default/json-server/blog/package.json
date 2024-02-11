@@ -1,5 +1,0 @@
-{
-	"scripts": {
-		"start": "json-server -H 0.0.0.0 --watch db.json"
-	}
-}
