@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import Host from '../model/Host.js';
 import Reachability from '../model/Reachability.js';
 import User from '../model/User.js';
+import Persons from '../model/User.js';
 
 import { isAuthenticated } from '../middleware/auth.js';
 
@@ -29,6 +30,19 @@ router.post('/user', isAuthenticated, async (req, res) => {
     }
 });
 
+//Persons
+router.post('/insert/persons', async (req, res) => {
+    const person = req.body;
+
+    const newPerson = await Persons.createPerson(person);
+
+    if (newPerson) {
+        res.json(newPerson);
+    } else {
+        throw new HTTPError('Invalid data to create host', 400);
+    }
+});
+
 //Emails
 router.get('/users/emails', async (req, res) => {
     const users = await User.readEmail();
@@ -42,6 +56,16 @@ router.get('/emails', async (req, res) => {
     
     res.json(users);
 });
+
+//Persons
+router.get('/persons', async (req, res) => {
+    const person = await Persons.readPersons();
+    
+    res.json(person);
+});
+
+
+
 
 
 
@@ -57,7 +81,7 @@ router.put('/user/:id', isAuthenticated, async (req, res) => {
     const user = req.body;
 
     if (id && user) {
-        const newUser = await Host.update(user, id);
+        const newUser = await User.update(user, id);
 
         res.json(newUser);
     } else {
@@ -72,7 +96,7 @@ router.put('/user/update_user/:id', async (req, res) => {
     const user = req.body;
 
     if (id && user) {
-        const newUser = await Host.update(user, id);
+        const newUser = await User.update(user, id);
 
         res.json(newUser);
     } else {

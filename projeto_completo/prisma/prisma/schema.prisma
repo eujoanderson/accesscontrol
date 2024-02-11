@@ -17,6 +17,12 @@ model User {
   name  String?
   posts Post[]
 }
+model Persons {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  card  String
+  setor  String
+}
 
 model Post {
   id        Int     @id @default(autoincrement())

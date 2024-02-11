@@ -129,7 +129,6 @@ async function cadastrar(){
 			const form = document.querySelector('form');
 			const user_new = Object.fromEntries(new FormData(form));
 		
-	
 			const configRequest = {
 				method: 'get',
 			};
@@ -223,8 +222,7 @@ async function recuperarSenha(){
 
 			const responsePut = await fetch(`/api/user/update_user/${id}`, configRequestPut);
 			const emailPut = await responsePut.json();
-			console.log(emailPut)
-
+			createAlert(`<i class='bx bxs-check-square px-2'></i>`, 'Senha alterada com sucesso!', 'success');
 		}
 		
 	}else{

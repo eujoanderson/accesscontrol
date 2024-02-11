@@ -17,6 +17,14 @@ async function create(user) {
     return newuser;
 }
 
+async function createPerson(person) {
+    const newperson = await prisma.persons.create({
+        data: person,
+    });
+
+    return newperson;
+}
+
 async function readByEmail(email) {
     const user = await prisma.user.findFirst({
       where: {
@@ -41,6 +49,12 @@ async function readEmail() {
     });
 
     return users;
+}
+
+async function readPersons() {
+    const persons = await prisma.persons.findMany();
+
+    return persons;
 }
 
 async function readUsers() {
@@ -95,5 +109,7 @@ export default {
     remove,
     readByEmail,
     readEmail,
-    readUsers
+    readUsers,
+    readPersons,
+    createPerson
 };

@@ -1,7 +1,7 @@
 # AccessControl - Controle de Acesso
 
 #### Nesse projeto iremos desenvolver um sistema para controle de acessos de usuários de uma umpresa
-##### O grupo é formado por: Arthur, Joanderson e Adelson
+##### Site criado por: Joanderson para o projeto de DW
 
 <br>
 
@@ -13,14 +13,16 @@ Primeira tela:<br>
 Para que o projeto funcione é preciso instalar o Vite, Bootstrap e Json-Server
 
 *npm i bootstrap* <br>
-*npm i json-server*<br>
 *npm create vite@latest control -- --template vanilla*<br>
 *npm install js-md5*<br>
 *npm install express*<br>
+*npx prisma migrate dev --name app*<br>
 
-Para poder rodar o Json-server acesse a pasta Json-Server e utilize o seguinte comando.
-*npx json-server -H 0.0.0.0 --watch db.json*
+Para poder rodar o prisma é preciso acessar a pasta Prisma e rodar os seguinte comando:
+*npm run dev*
 
+Para poder rodar o vite na raiz do projeto rode o comando:
+*npm run dev*
 
 Tela Principal - Dashboard:<br>
 ![Tela de Dashboard](./img/img-pages/Tela-Dashboard.png)

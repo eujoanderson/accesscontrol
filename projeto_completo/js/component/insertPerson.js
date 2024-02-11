@@ -1,9 +1,5 @@
-import insertTable from './personTable.js';
-//import API from '../services/api.js';
 import AUTH from '../component/autenticacao.js';
 export let lista = [];
-//let persons = await API.read('person');
-//let users = await API.read('users');
 
 window.session_sair = AUTH.session_sair;
 
@@ -32,44 +28,57 @@ async function remove_alert_user(cor, message, condic){
 async function insertPerson(event){
 	event.preventDefault();
 
-    /* 
-    persons = await API.read('person');
-    users = await API.read('users');
+    const name = document.querySelector('#name').value.toUpperCase();
+    const card = document.querySelector('#card').value;
+    const setor = document.querySelector('#setor').value.toUpperCase();
+
+    const persons = {
+        "name": name,
+        "card": card,
+        "setor":setor,
+    };
+
+    const configRequest = {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(persons),
+    };
+
+    const user_response = await (
+        await fetch('/api/insert/persons', configRequest)
+    ).json();   
+}
+
+async function list_persons(){
+	const configRequest = {
+        method: 'get',
+    };
     
-    for (const u of users){
-        let i = users.indexOf(u);
-
-        if(users[i].session === 1 && users[i].email === u.email){
-            const form = document.querySelector("form");
-        
-            const name = document.querySelector('#name').value.toUpperCase();
-            const card = document.querySelector('#card').value;
-            const setor = document.querySelector('#setor').value.toUpperCase();
+    const response = await fetch('/api/persons', configRequest);
+    const persons = await response.json();
     
-            lista = {
-                name: name,
-                card: card,
-                setor: setor};
+    persons.forEach(person => {
+        	const tbody = document.querySelector("table tbody");
 
-            if(!persons.some(data => data.name === name)){
-                let responses = await API.create('person', lista)
-                for(let person of [responses]){
-                    insertTable.personTable(person);
-                    remove_alert_user('success', 'Usuário Cadastrado com sucesso!','0');
-                }
-            }else{
-                remove_alert_user('danger', 'Usuário já existe, tente cadastrar novamente', '0');
-            }
-            break;
-        }else{
-            AUTH.session_sair('0');
-            break;
-        }
-        const persons_update = await API.update('users', u.id, data);
-        break;
-    }
+	const row = `
+	<tr id="${person.id}">
+		<th scope="row" >${person.id}</th>
+		<td >${person.name}</td>
+		<td >${person.card}</td>
+		<td >${person.setor}</td>
+		<td class="icon-container ">
+			<a class="icon-edit" id="iconEdit-${person.id}" style="cursor:pointer;" onclick="update('${person.id}', '${person.name}', '${person.card}', '${person.setor}')" ><i class='bx bxs-pencil' ></i></a>
+			<a class=" icon-edit" style="cursor:pointer;" onclick="remove_user('${person.id}')"><i class='bx bx-x' ></i></a> 
+		</td>
+    </tr>
+	`;
 
-    */
+	if (tbody != null){
+		tbody.insertAdjacentHTML('beforeend', row);
+	}
+    });
 }
 
 async function remove_user(id){
@@ -206,4 +215,4 @@ async function alert_load(){
     */
 }
 
-export default { insertPerson, remove_user, update, alert_load }
+export default { insertPerson, remove_user, update, alert_load, list_persons }

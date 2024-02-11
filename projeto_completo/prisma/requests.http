@@ -36,7 +36,26 @@ GET {{baseUrl}}/emails
 
 ### Reads a host
 
+GET {{baseUrl}}/persons
+Authorization: bearer {{token}}
 
+{
+  "email": "teste1@gmail.com",
+  "password": "123"
+}
+###
+
+POST {{baseUrl}}/insert/persons
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+{
+  "card": "11",
+  "setor": "123",
+  "name": "teste"
+}
+
+###
 
 GET {{baseUrl}}/signin
 Authorization: bearer {{token}}
